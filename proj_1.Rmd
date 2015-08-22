@@ -20,7 +20,7 @@ library(randomForest)
 #### Download data
 
 ```{r}
-data <- read.csv('https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv')
+data <- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv')
 ```
 
 Let's look at the data to verify its quality
@@ -39,17 +39,17 @@ We will import again the data, but this time we will force the missing values an
 
 > We will re-label the testing data as 'Validation' and using the training dataset (which has over 19000 observations), we will create both training and testing datasets for this exercise.
 
-```{r, eval=F}
+```{r}
 data <- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv',stringsAsFactors = F, na.strings=c('#DIV/0', '', 'NA'))
 
-validation <- read.csv('https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv', stringsAsFactors = F, na.strings=c('#DIV/0', '', 'NA'))
+validation <- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv', stringsAsFactors = F, na.strings=c('#DIV/0', '', 'NA'))
 
 ```
 
 
 ```{r, echo=F, message=F,warning=F}
-data <- read.csv('F:\\Drive\\R\\Machine_learning\\Project\\pml-training.csv', stringsAsFactors = F,  na.strings=c('#DIV/0', '', 'NA'))
-validation <- read.csv('F:\\Drive\\R\\Machine_learning\\Project\\pml-testing.csv', stringsAsFactors = F,  na.strings=c('#DIV/0', '', 'NA'))
+#data <- read.csv('F:\\Drive\\R\\Machine_learning\\Project\\pml-training.csv', stringsAsFactors = F,  na.strings=c('#DIV/0', '', 'NA'))
+#validation <- read.csv('F:\\Drive\\R\\Machine_learning\\Project\\pml-testing.csv', stringsAsFactors = F,  na.strings=c('#DIV/0', '', 'NA'))
 ```
 
 #### Dealing with NA's
@@ -95,7 +95,7 @@ test <- data2[-inTrain,]
 ## Modeling
 
 
-```{r, eval=F}
+```{r}
 set.seed(12345)
 modFit <- randomForest(factor(classe) ~ . , data=train,ntree=1000,importance=TRUE)
 
@@ -103,8 +103,9 @@ modFit <- randomForest(factor(classe) ~ . , data=train,ntree=1000,importance=TRU
 
 ```{r, echo = F}
 #saveRDS(modFit, 'F:\\Drive\\R\\Machine_learning\\Project\\modelFit.RDS')
-library(randomForest)
-modFit <- readRDS('F:\\Drive\\R\\Machine_learning\\Project\\modelFit.RDS')
+# library(randomForest)
+# set.seed(12345)
+# modFit <- readRDS('F:\\Drive\\R\\Machine_learning\\Project\\modelFit.RDS')
 
 ```
 
