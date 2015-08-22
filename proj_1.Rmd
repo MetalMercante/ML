@@ -2,9 +2,9 @@
 
 As an occasional Gym goer my perception of the health and fitness business is that its focus is very unbalanced towards nutrition, what should you eat, what supplements will make you bigger and leaner, and general trends like Zumba and CrossFit, and much less on the results of the exercises and/or its form and posture.
 
-When you think about long term health and fitness one aspect that is overlooked is the downtime due to injuries and a quick Google serch will reveal thousands of articles about injuries that are results of bad posture and exercise form. Thanks to the new technologies like Jawbone Up, Nike FuelBand, and Fitbit and the datasets provided by the researchers in PUC-RIO we are able to quantify what makes a bad exercise form.
+When you think about long term health and fitness one aspect that is overlooked is the downtime due to injuries and a quick Google search will reveal thousands of articles about injuries that are results of bad posture and exercise form. Thanks to the new technologies like Jawbone Up, Nike FuelBand, and Fitbit and the datasets provided by the researchers in PUC-RIO we are able to quantify what makes a bad exercise form.
 
-Using the Weight Lifting Exercises Dataset from http://groupware.les.inf.puc-rio.br/har we intend to create a model which is able to predict the quality of the movements based on measurements from several sensors located on the arms, belt and dumbells.   
+Using the Weight Lifting Exercises Dataset from http://groupware.les.inf.puc-rio.br/har we intend to create a model which is able to predict the quality of the movements based on measurements from several sensors located on the arms, belt and dumbbells.   
 
 ### The Data
 
@@ -35,9 +35,9 @@ Before we start the modeling process we have to clean this dataset because there
 
 We will import again the data, but this time we will force the missing values and the '#DIV/0' into NAs
 
-> One important thing to consider: This data came from the Machine Learning Course in coursera and was labeled training and testing, but there is no way to actualy test the results in this dataset without submiting them to Coursera.
+> One important thing to consider: This data came from the Machine Learning Course in Coursera and was labeled training and testing, but there is no way to actually test the results in this dataset without submitting them to Coursera.
 
-> We will re-label the testing data as 'Validation' and using the training dataset (which has over 19000 observations) we will create both training and testing datasets for this exercise.
+> We will re-label the testing data as 'Validation' and using the training dataset (which has over 19000 observations), we will create both training and testing datasets for this exercise.
 
 ```{r, eval=F}
 data <- read.csv('http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv',stringsAsFactors = F, na.strings=c('#DIV/0', '', 'NA'))
@@ -73,7 +73,7 @@ sapply(data2, function(y) sum(length(which(is.na(y)))))
 
 #### Removing variables that will not be used
 
-There are some other variables that are not related to the movement class we are trying to predict. We will remove them from the new datasets to simplify the modeling equations. Also we have to set the remaining variables as numeric.
+Some other variables are not related to the movement class we are trying to predict. We will remove them from the new datasets to simplify the modeling equations. In addition, we have to set the remaining variables as numeric.
 
 ```{r}
 data2 <- data2 %>% select(-X,-user_name, -raw_timestamp_part_1, -raw_timestamp_part_2, -cvtd_timestamp, -new_window, -num_window)
@@ -83,7 +83,7 @@ data2 <- data2 %>% select(-X,-user_name, -raw_timestamp_part_1, -raw_timestamp_p
 
 ### Split dataset into Training and Testing
 
-Now that we have a clean dataset we can slit it into Training and Testing and to do that we will use the standard 0.7% training and 0.3% testing
+Now that we have a clean dataset, we can slit it into Training and Testing and to do that, we will use the standard 0.7% training and 0.3% testing
 
 ```{r}
 inTrain <- createDataPartition(data2$classe, p=0.7, list=F) 
